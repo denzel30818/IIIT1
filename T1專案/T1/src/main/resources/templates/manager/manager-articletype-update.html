@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" th:href="@{/favicon.ico}" />
+<link th:href="@{/css/header.css}" rel="stylesheet" />
+<link th:href="@{/css/footer.css}" rel="stylesheet" />
+<link th:href="@{/css/bootstrap-4.5.2.min.css}" rel="stylesheet" />
+<script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+<script th:src="@{/js/popper-2.6.0.min.js}"></script>
+<script th:src="@{/js/bootstrap-4.5.2.min.js}"></script>
+<script th:src="@{/js/jquery.validate-1.19.2.min.js}"></script>
+
+<!-- 自己用到 另外加的部分 -->
+<link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}">
+<link rel="stylesheet" th:href="@{/css/jquery-ui.structure.css}">
+<link rel="stylesheet" th:href="@{/css/jquery-ui.theme.css}">
+<script th:src="@{/js/shop/update.js}"></script>
+<link th:href="@{/css/scrollbar.css}" rel="stylesheet">
+
+<title>T-one</title>
+<style>
+#checkbox {
+	margin: 5px 5px;
+}
+
+#hidden {
+	display: none;
+}
+.btn.btn-primary{
+
+background-color:#47afff;
+
+border: #47afff;
+
+color:white;
+
+padding:6px 11px;
+
+}
+</style>
+</head>
+<body style="background-image: url('/images/shop/img/color04.jpg'); background-attachment: fixed;">
+
+	<div id="wrapper">
+		<div th:replace="header :: #header-wrapper-manager"></div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<h3>討論版更新</h3>
+					<hr>
+					<form action="#" th:action="@{/articletype/updateSubmit}" method="POST" enctype="multipart/form-data"
+						name="confirmationForm" id="confirmationForm">
+						<div th:object="${session.currentArticleType}">
+							<input type="hidden" name="forumID" th:value="*{forumID}" />
+							<input type="hidden" name="photoUri" th:value="*{photoUri}" />
+							看板名稱:
+							<input type="text" name="forumName" class="form-control" th:value="*{forumName}">
+							<br />
+							版規內容:
+							<input type="text" name="forumContent" class="form-control" th:value="*{forumContent}">
+							<br />
+							平台分類:<select type="text" name="category" class="form-control" th:value="*{category}">
+								<option disabled="disabled">請選擇分類</option>
+								<option>PC</option>
+								<option>TV</option>
+								<option>MOB</option>
+							</select>
+
+							<br />
+
+						</div>
+						<hr>
+						<button type="submit" class="btn btn-primary">確定</button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div th:replace="footer :: #footer-wrapper"></div>
+
+	</div>
+
+</body>
+</html>
+
+
+
+
+
+
+

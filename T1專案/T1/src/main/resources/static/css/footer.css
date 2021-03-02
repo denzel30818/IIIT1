@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+/* 頁尾固定在頁面最下方 */
+#footer-wrapper {
+	height: 50px;
+	width: 100%;
+	bottom: 0;
+	position: absolute;
+	box-sizing: border-box;
+}
+/* 頁尾文字置中、背景顏色 */
+#copy {
+	line-height: 50px;
+	text-align: center;
+	color: #bfbfbf;
+}

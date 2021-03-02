@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link th:href="@{/css/footer.css}" rel="stylesheet" />
+<link th:href="@{/css/shop-header.css}" rel="stylesheet" />
+
+<link rel="shortcut icon" th:href="@{/favicon.ico}" />
+<link th:href="@{/css/bootstrap-4.5.2.min.css}" rel="stylesheet" />
+<script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+<script th:src="@{/js/popper-2.6.0.min.js}"></script>
+<script th:src="@{/js/bootstrap-4.5.2.min.js}"></script>
+<script th:src="@{/js/jquery.validate-1.19.2.min.js}"></script>
+<script th:src="@{/js/jquery.validate-1.19.2.min.js}"></script>
+<script th:src="@{/js/shop/shop-productlist.js}"></script>
+<link th:href="@{/css/scrollbar.css}" rel="stylesheet">
+
+
+
+<!-- 輪播器 -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css" />
+
+<title>T-one 商品分類頁面</title>
+<style>
+body {
+	background-color: #f5f5f5;
+}
+
+.container {
+	margin-left: 360px;
+	margin-top: 25px !important;
+}
+
+#title {
+	width: 1000px;
+	height: 45px;
+	padding: 0 16px;
+	margin: 10px auto 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#result {
+	display: flex;
+	align-items: center;
+}
+
+#resulttitle {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#searchresult {
+	font-size: 14px;
+	margin-left: 20px;
+}
+
+#sort {
+	margin: 10px auto 30px;
+	width: 1000px;
+	padding: 0 16px;
+}
+
+#sort a:hover {
+	text-decoration: none;
+}
+
+.sort {
+	padding: 5px 10px;
+	background-color: #e8e8e8;
+	color: gray;
+	font-size: 15px;
+	border-radius: 2px;
+}
+
+.sort.active, .sort:hover {
+	background-color: #fad6c8;
+	color: #54393e;
+	text-decoration: none;
+}
+
+#rows {
+	width: 1000px;
+	min-height: 300px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	flex-flow: row wrap;
+}
+
+#product {
+	width: 180px;
+	height: 260px;
+	box-shadow: 0 0 8px #c2c2c2;
+	/* border-radius: 5px; */
+	margin: 12px 10px;
+	padding: 0;
+	/* 	background-color: #fafafa; */
+}
+
+#product:hover {
+	cursor: pointer;
+}
+
+#img {
+	display: flex;
+	align-items: center;
+	height: 180px;
+	font-size: 13px;
+	line-height: 18px;
+	position: relative;
+}
+
+#pimg {
+	/* border-radius: 4px 4px 0 0; */
+	width: 180px;
+	height: 180px;
+}
+
+#pinfo {
+	display: flex;
+	flex-direction: column;
+	height: 80px;
+	margin: auto;
+	position: relative;
+	color: black;
+	text-decoration: none;
+	align-items: center;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+#pinfo span {
+	text-align: center;
+}
+
+#page-link-bar {
+	margin: 50px auto;
+	text-align: center;
+}
+
+.pgbtn {
+	padding: 5px 0;
+	margin: 0 1px;
+	width: 30px;
+	color: #bababa;
+	border: none;
+	background-color: white;
+	text-align: center;
+	font-size: 14px;
+	border-radius: 3px;
+}
+
+.pgbtn:hover, .nextpg:hover, .prepg:hover {
+	background-color: #fad6c8;
+	color: #8a676e;
+}
+
+.pgbtn.active {
+	color: #54393e;
+	text-decoration: underline;
+}
+
+.prepg, .nextpg {
+	padding: 5px 0;
+	margin: 0 1px;
+	width: 80px;
+	border: none;
+	background-color: white;
+	text-align: center;
+	font-size: 14px;
+	color: #54393e;
+	border-radius: 3px;
+}
+
+#price {
+	padding: 4px 5px;
+	font-size: 14px;
+	color: #143161;
+	font-weight: bold;
+	/* 	background-color: #5a87d1; */
+	border-radius: 2px;
+}
+
+#lowprice {
+	width: 80px !important;
+	height: 23px;
+	padding: 2px 8px;
+	font-size: 14px;
+	color: white;
+	background-color: #bf0700;
+	box-shadow: 2px 2px 2px gray;
+}
+
+#name {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 17px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	width: 170px !important;
+	padding-top: 12px;
+	padding-bottom: 8px;
+}
+
+.searchbox {
+	display: flex;
+}
+
+#key {
+	border: 1px solid white;
+	border-right: none;
+	border-radius: 18px 0 0 18px;
+	background-color: white;
+	padding: 5px 0 5px 15px;
+	font-size: 15px;
+}
+
+#key::placeholder {
+	color: lightgray;
+	font-size: 14px;
+}
+
+#key:focus {
+	border: 2px solid #cf8b8a;
+	outline: none;
+	border-right: none;
+	border-style: outset;
+	border-right-style: none;
+}
+
+#key:focus+div {
+	border: 2px solid #cf8b8a;
+	border-left: none;
+	outline: none;
+	border-style: outset;
+	border-left-style: none;
+}
+
+#loupe {
+	margin: 0;
+	border: 1px solid white;
+	border-left: none;
+	padding: 2px 12px 0 5px;
+	border-radius: 0 18px 18px 0;
+	background-color: white;
+}
+/*特價*/
+#addline {
+	color: gray;
+	text-decoration: line-through;
+	font-size: 10px;
+}
+
+/*從這開始是左邊固定的nav bar  */
+body {
+	margin: 0;
+	height: auto;
+}
+
+.icon-bar {
+	position: fixed;
+	top: 55%;
+	left: 160px;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	box-shadow: 2px 2px 3px #62758c;
+	border: 1px solid #e6c1c8;
+}
+
+.icon-bar>div {
+	text-align: center;
+	background-color: rgba(0, 39, 66, 0.95);;
+	width: 160px;
+	color: #90bcf5;
+	padding: 5px 5px;
+	font-size: 15px;
+	border-bottom: 1px solid #004491;
+}
+
+.icon-bar p {
+	color: #e3e3e3;
+	margin: 8px 0 !important;
+}
+
+.a a {
+	color: #90bcf5;
+	margin: 2px 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.a:hover {
+	background-color: #003f87;
+	cursor: pointer;
+}
+
+.a:hover a {
+	color: white;
+	text-decoration: none;
+}
+
+.page-link:hover {
+	cursor: pointer;
+}
+</style>
+
+</head>
+<body style="background-image: url('/images/shop/img/color04.jpg'); background-attachment: fixed;">
+	<div id="wrapper">
+		<div th:if="${session.currentUser!=null}">
+			<div th:replace="shop-header :: #header-wrapper"></div>
+		</div>
+		<div th:if="${session.currentManager}">
+			<div th:replace="shop-header :: #header-wrapper-manager"></div>
+		</div>
+		<div th:if="${session.currentManager==null} and ${session.currentUser==null}">
+			<div th:replace="shop-header :: #header-wrapper-unlogin"></div>
+		</div>
+		<div class="container mt-5">
+			<div id="title">
+				<div id="resulttitle" th:if="${withCate}=='false'">全部商品</div>
+				<div id="result" th:if="${withCate}=='true'">
+					<span id="resulttitle" th:text="${cate}"></span>
+					<span id="searchresult" th:text="'(共'+${total}+'筆資料)'"></span>
+				</div>
+				<div id="result" th:if="${withCate}=='search'">
+					<span id="resulttitle" th:text="'搜尋結果：'+${key}"></span>
+					<span id="searchresult" th:text="'(共'+${total}+'筆資料)'"></span>
+				</div>
+				<div id="result" th:if="${withCate}=='tag'">
+					<span id="resulttitle" th:text="${tag}+' 類型'"></span>
+					<span id="searchresult" th:text="'(共'+${total}+'筆資料)'"></span>
+				</div>
+				<div id="result" th:if="${withCate}=='os'">
+					<span id="resulttitle" th:text="${os}+' 作業系統'"></span>
+					<span id="searchresult" th:text="'(共'+${total}+'筆資料)'"></span>
+				</div>
+				<div id="result" th:if="${withCate}=='sale'">
+					<span id="resulttitle" th:text="'特別優惠'"></span>
+					<span id="searchresult" th:text="'(共'+${total}+'筆資料)'"></span>
+				</div>
+				<div class="search_area">
+					<div id="store_search">
+						<form id="searchform" name="searchform" method="get" th:action="@{/shop/list/search}">
+							<div class="searchbox">
+								<input id="key" name="key" type="text" class="default" placeholder="搜尋所有遊戲" size="20" autocomplete="off">
+								<div id="loupe">
+									<a href="#" id="store_search_link" onclick="var $Form = $(this).parents('form'); $Form.submit(); return false;">
+										<img th:src="@{/images/shop/img/loupe.png}" width="18px">
+									</a>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div th:if="${withCate}=='true'" id="sort">
+				<a th:href="@{/shop/list(category=${category},sort='default')}">
+					<span th:if="${sort}=='default'" class="sort active">綜合排序</span>
+					<span th:unless="${sort}=='default'" class="sort">綜合排序</span>
+				</a>
+				<a th:href="@{/shop/list(category=${category},sort='date')}">
+					<span th:if="${sort}=='date'" class="sort active">新發行</span>
+					<span th:unless="${sort}=='date'" class="sort">新發行</span>
+				</a>
+				<a th:href="@{/shop/list(category=${category},sort='sales')}">
+					<span th:if="${sort}=='sales'" class="sort active">銷量排行</span>
+					<span th:unless="${sort}=='sales'" class="sort">銷量排行</span>
+				</a>
+				<a th:href="@{/shop/list(category=${category},sort='priceA')}">
+					<span th:if="${sort}=='priceA'" class="sort active">價格低至高</span>
+					<span th:unless="${sort}=='priceA'" class="sort">價格低至高</span>
+				</a>
+				<a th:href="@{/shop/list(category=${category},sort='priceD')}">
+					<span th:if="${sort}=='priceD'" class="sort active">價格高至低</span>
+					<span th:unless="${sort}=='priceD'" class="sort">價格高至低</span>
+				</a>
+			</div>
+			<div th:if="${withCate}=='false'" id="sort">
+				<a th:href="@{/shop/list(sort='default')}">
+					<span th:if="${sort}=='default'" class="sort active">綜合排序</span>
+					<span th:unless="${sort}=='default'" class="sort">綜合排序</span>
+				</a>
+				<a th:href="@{/shop/list(sort='date')}">
+					<span th:if="${sort}=='date'" class="sort active">新發行</span>
+					<span th:unless="${sort}=='date'" class="sort">新發行</span>
+				</a>
+				<a th:href="@{/shop/list(sort='sales')}">
+					<span th:if="${sort}=='sales'" class="sort active">銷量排行</span>
+					<span th:unless="${sort}=='sales'" class="sort">銷量排行</span>
+				</a>
+				<a th:href="@{/shop/list(sort='priceA')}">
+					<span th:if="${sort}=='priceA'" class="sort active">價格低至高</span>
+					<span th:unless="${sort}=='priceA'" class="sort">價格低至高</span>
+				</a>
+				<a th:href="@{/shop/list(sort='priceD')}">
+					<span th:if="${sort}=='priceD'" class="sort active">價格高至低</span>
+					<span th:unless="${sort}=='priceD'" class="sort">價格高至低</span>
+				</a>
+			</div>
+			<div th:if="${withCate}=='search'" id="sort">
+				<a th:href="@{/shop/list/search(key=${key},sort='default')}">
+					<span th:if="${sort}=='default'" class="sort active">綜合排序</span>
+					<span th:unless="${sort}=='default'" class="sort">綜合排序</span>
+				</a>
+				<a th:href="@{/shop/list/search(key=${key},sort='date')}">
+					<span th:if="${sort}=='date'" class="sort active">新發行</span>
+					<span th:unless="${sort}=='date'" class="sort">新發行</span>
+				</a>
+				<a th:href="@{/shop/list/search(key=${key},sort='sales')}">
+					<span th:if="${sort}=='sales'" class="sort active">銷量排行</span>
+					<span th:unless="${sort}=='sales'" class="sort">銷量排行</span>
+				</a>
+				<a th:href="@{/shop/list/search(key=${key},sort='priceA')}">
+					<span th:if="${sort}=='priceA'" class="sort active">價格低至高</span>
+					<span th:unless="${sort}=='priceA'" class="sort">價格低至高</span>
+				</a>
+				<a th:href="@{/shop/list/search(key=${key},sort='priceD')}">
+					<span th:if="${sort}=='priceD'" class="sort active">價格高至低</span>
+					<span th:unless="${sort}=='priceD'" class="sort">價格高至低</span>
+				</a>
+			</div>
+			<div th:if="${withCate}=='os'" id="sort">
+				<a th:href="@{/shop/list/os(os=${os},sort='default')}">
+					<span th:if="${sort}=='default'" class="sort active">綜合排序</span>
+					<span th:unless="${sort}=='default'" class="sort">綜合排序</span>
+				</a>
+				<a th:href="@{/shop/list/os(os=${os},sort='date')}">
+					<span th:if="${sort}=='date'" class="sort active">新發行</span>
+					<span th:unless="${sort}=='date'" class="sort">新發行</span>
+				</a>
+				<a th:href="@{/shop/list/os(os=${os},sort='sales')}">
+					<span th:if="${sort}=='sales'" class="sort active">銷量排行</span>
+					<span th:unless="${sort}=='sales'" class="sort">銷量排行</span>
+				</a>
+				<a th:href="@{/shop/list/os(os=${os},sort='priceA')}">
+					<span th:if="${sort}=='priceA'" class="sort active">價格低至高</span>
+					<span th:unless="${sort}=='priceA'" class="sort">價格低至高</span>
+				</a>
+				<a th:href="@{/shop/list/os(os=${os},sort='priceD')}">
+					<span th:if="${sort}=='priceD'" class="sort active">價格高至低</span>
+					<span th:unless="${sort}=='priceD'" class="sort">價格高至低</span>
+				</a>
+			</div>
+			<div th:if="${withCate}=='tag'" id="sort">
+				<a th:href="@{/shop/list/tag(tag=${tag},sort='default')}">
+					<span th:if="${sort}=='default'" class="sort active">綜合排序</span>
+					<span th:unless="${sort}=='default'" class="sort">綜合排序</span>
+				</a>
+				<a th:href="@{/shop/list/tag(tag=${tag},sort='date')}">
+					<span th:if="${sort}=='date'" class="sort active">新發行</span>
+					<span th:unless="${sort}=='date'" class="sort">新發行</span>
+				</a>
+				<a th:href="@{/shop/list/tag(tag=${tag},sort='sales')}">
+					<span th:if="${sort}=='sales'" class="sort active">銷量排行</span>
+					<span th:unless="${sort}=='sales'" class="sort">銷量排行</span>
+				</a>
+				<a th:href="@{/shop/list/tag(tag=${tag},sort='priceA')}">
+					<span th:if="${sort}=='priceA'" class="sort active">價格低至高</span>
+					<span th:unless="${sort}=='priceA'" class="sort">價格低至高</span>
+				</a>
+				<a th:href="@{/shop/list/tag(tag=${tag},sort='priceD')}">
+					<span th:if="${sort}=='priceD'" class="sort active">價格高至低</span>
+					<span th:unless="${sort}=='priceD'" class="sort">價格高至低</span>
+				</a>
+			</div>
+			<div th:if="${withCate}=='sale'" id="sort">
+				<a th:href="@{/shop/list/sale(sort='default')}">
+					<span th:if="${sort}=='default'" class="sort active">綜合排序</span>
+					<span th:unless="${sort}=='default'" class="sort">綜合排序</span>
+				</a>
+				<a th:href="@{/shop/list/sale(sort='date')}">
+					<span th:if="${sort}=='date'" class="sort active">新發行</span>
+					<span th:unless="${sort}=='date'" class="sort">新發行</span>
+				</a>
+				<a th:href="@{/shop/list/sale(sort='sales')}">
+					<span th:if="${sort}=='sales'" class="sort active">銷量排行</span>
+					<span th:unless="${sort}=='sales'" class="sort">銷量排行</span>
+				</a>
+				<a th:href="@{/shop/list/sale(sort='priceA')}">
+					<span th:if="${sort}=='priceA'" class="sort active">價格低至高</span>
+					<span th:unless="${sort}=='priceA'" class="sort">價格低至高</span>
+				</a>
+				<a th:href="@{/shop/list/sale(sort='priceD')}">
+					<span th:if="${sort}=='priceD'" class="sort active">價格高至低</span>
+					<span th:unless="${sort}=='priceD'" class="sort">價格高至低</span>
+				</a>
+			</div>
+			<div id="rows">
+				<div id="products" th:each="p:${products}">
+					<div id="product">
+						<a id="img" th:href="@{'/shop/product/'+${p.p_id}}">
+							<img id="pimg" th:src="@{${p.photosImagePath}}" width="180px">
+						</a>
+						<a th:href="@{'/shop/product/'+${p.p_id}}" id="pinfo">
+							<span id="name" th:text="${p.p_name}" style="width: 90px"></span>
+							<span th:if="${p.price*p.discount==p.price}" id="price" th:text="'NT$'+${p.price}" style="width: 80px"></span>
+							<span id="pricerow" th:unless="${p.price*p.discount==p.price}">
+								<span id="addline" th:text="'NT$'+${p.price}"></span>
+								<span id="lowprice" th:text="'NT$'+${#numbers.formatDecimal(p.price*p.discount,1,0)}"></span>
+							</span>
+						</a>
+					</div>
+				</div>
+			</div>
+			<p th:if="${pgtotal}!=0" id="page-link-bar">
+				<th:block th:if="${withCate}=='true'">
+					<button th:if="${page!=1}" class="prepg"
+						th:onclick="'window.location.href = \'' + @{/shop/list(page=${page}-1,category=${category},sort=${sort})} + '\''">&lt;
+						上一頁</button>
+					<span th:each="i: ${#numbers.sequence(1, pgtotal)}">
+						<button th:if="${page == i}" class="pgbtn active" th:text="${i}"
+							th:onclick="'window.location.href = \'' + @{/shop/list(page=${i},category=${category},sort=${sort})} + '\''"></button>
+						<button class="pgbtn" th:unless="${page == i}" th:text="${i}"
+							th:onclick="'window.location.href = \'' + @{/shop/list(page=${i},category=${category},sort=${sort})} + '\''"></button>
+					</span>
+					<button th:if="${page!=pgtotal}" class="nextpg"
+						th:onclick="'window.location.href = \'' + @{/shop/list(page=${page}+1,category=${category},sort=${sort})} + '\''">下一頁
+						&gt;</button>
+				</th:block>
+				<th:block th:if="${withCate}=='false'">
+					<button th:if="${page!=1}" class="prepg"
+						th:onclick="'window.location.href = \'' + @{/shop/list(page=${page}-1,sort=${sort})} + '\''">&lt; 上一頁</button>
+					<span th:each="i: ${#numbers.sequence(1, pgtotal)}">
+						<button th:if="${page == i}" class="pgbtn active" th:text="${i}"
+							th:onclick="'window.location.href = \'' + @{/shop/list(page=${i},sort=${sort})} + '\''"></button>
+						<button class="pgbtn" th:unless="${page == i}" th:text="${i}"
+							th:onclick="'window.location.href = \'' + @{/shop/list(page=${i},sort=${sort})} + '\''"></button>
+					</span>
+					<button th:if="${page!=pgtotal}" class="nextpg"
+						th:onclick="'window.location.href = \'' + @{/shop/list(page=${page}+1,sort=${sort})} + '\''">下一頁 &gt;</button>
+				</th:block>
+				<th:block th:if="${withCate}=='search'">
+					<button th:if="${page!=1}" class="prepg"
+						th:onclick="'window.location.href = \'' + @{/shop/list/search(page=${page}-1,key=${key},sort=${sort})} + '\''">&lt;
+						上一頁</button>
+					<span th:each="i: ${#numbers.sequence(1, pgtotal)}">
+						<button th:if="${page == i}" class="pgbtn active" th:text="${i}"
+							th:onclick="'window.location.href = \'' + @{/shop/list/search(page=${i},key=${key},sort=${sort})} + '\''"></button>
+						<button class="pgbtn" th:unless="${page == i}" th:text="${i}"
+							th:onclick="'window.location.href = \'' + @{/shop/list/search(page=${i},key=${key},sort=${sort})} + '\''"></button>
+					</span>
+					<button th:if="${page!=pgtotal}" class="nextpg"
+						th:onclick="'window.location.href = \'' + @{/shop/list/search(page=${page}+1,key=${key},sort=${sort})} + '\''">下一頁
+						&gt;</button>
+				</th:block>
+				<th:block th:if="${withCate}=='tag'">
+					<button th:if="${page!=1}" class="prepg"
+						th:onclick="'window.location.href = \'' + @{/shop/list/tag(page=${page}-1,tag=${tag},sort=${sort})} + '\''">&lt;
+						上一頁</button>
+					<span th:each="i: ${#numbers.sequence(1, pgtotal)}">
+						<button th:if="${page == i}" class="pgbtn active" th:text="${i}"
+							th:onclick="'window.location.href = \'' + @{/shop/list/tag(page=${i},tag=${tag},sort=${sort})} + '\''"></button>
+						<button class="pgbtn" th:unless="${page == i}" th:text="${i}"
+							th:onclick="'window.location.href = \'' + @{/shop/list/tag(page=${i},tag=${tag},sort=${sort})} + '\''"></button>
+					</span>
+					<button th:if="${page!=pgtotal}" class="nextpg"
+						th:onclick="'window.location.href = \'' + @{/shop/list/tag(page=${page}+1,tag=${tag},sort=${sort})} + '\''">下一頁
+						&gt;</button>
+				</th:block>
+				<th:block th:if="${withCate}=='os'">
+					<button th:if="${page!=1}" class="prepg"
+						th:onclick="'window.location.href = \'' + @{/shop/list/os(page=${page}-1,os=${os},sort=${sort})} + '\''">&lt; 上一頁</button>
+					<span th:each="i: ${#numbers.sequence(1, pgtotal)}">
+						<button th:if="${page == i}" class="pgbtn active" th:text="${i}"
+							th:onclick="'window.location.href = \'' + @{/shop/list/os(page=${i},os=${os},sort=${sort})} + '\''"></button>
+						<button class="pgbtn" th:unless="${page == i}" th:text="${i}"
+							th:onclick="'window.location.href = \'' + @{/shop/list/os(page=${i},os=${os},sort=${sort})} + '\''"></button>
+					</span>
+					<button th:if="${page!=pgtotal}" class="nextpg"
+						th:onclick="'window.location.href = \'' + @{/shop/list/os(page=${page}+1,os=${os},sort=${sort})} + '\''">下一頁 &gt;</button>
+				</th:block>
+				<th:block th:if="${withCate}=='sale'">
+					<button th:if="${page!=1}" class="prepg"
+						th:onclick="'window.location.href = \'' + @{/shop/list/sale(page=${page}-1,sort=${sort})} + '\''">&lt; 上一頁</button>
+					<span th:each="i: ${#numbers.sequence(1, pgtotal)}">
+						<button th:if="${page == i}" class="pgbtn active" th:text="${i}"
+							th:onclick="'window.location.href = \'' + @{/shop/list/sale(page=${i},sort=${sort})} + '\''"></button>
+						<button class="pgbtn" th:unless="${page == i}" th:text="${i}"
+							th:onclick="'window.location.href = \'' + @{/shop/list/sale(page=${i},sort=${sort})} + '\''"></button>
+					</span>
+					<button th:if="${page!=pgtotal}" class="nextpg"
+						th:onclick="'window.location.href = \'' + @{/shop/list/sale(page=${page}+1,sort=${sort})} + '\''">下一頁 &gt;</button>
+				</th:block>
+			</p>
+
+
+			<script type="text/javascript">
+				
+			$("#page-link").click(function(){
+				$(this).addClass('active');
+			});	
+			
+
+			</script>
+		</div>
+		<div class="icon-bar">
+			<div>
+				<div class="a">
+					<a th:href="@{/shop/list}">所有商品</a>
+				</div>
+			</div>
+			<div>
+				<div class="a">
+					<a th:href="@{/shop/list/sale}">特惠商品</a>
+				</div>
+			</div>
+			<div>
+				<p>依商品分類瀏覽</p>
+				<div class="a">
+					<a th:href="@{/shop/list?category=PC}">PC</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list?category=TV}">TV</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list?category=遊戲週邊}">遊戲週邊</a>
+				</div>
+			</div>
+			<div>
+				<p>依作業系統瀏覽</p>
+				<div class="a">
+					<a th:href="@{/shop/list/os?os=windows}">Windows</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list/os?os=mac}">macOS</a>
+				</div>
+			</div>
+			<div>
+				<p>依熱門標籤瀏覽</p>
+				<div class="a">
+					<a th:href="@{/shop/list/tag?tag=動作}">動作</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list/tag?tag=冒險}">冒險</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list/tag?tag=單機}">單機</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list/tag?tag=策略}">策略</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list/tag?tag=運動}">運動</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list/tag?tag=角色扮演}">角色扮演</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list/tag?tag=日本動畫}">日本動畫</a>
+				</div>
+			</div>
+		</div>
+
+		<div th:replace="footer :: #footer-wrapper"></div>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

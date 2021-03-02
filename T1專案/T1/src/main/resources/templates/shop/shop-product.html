@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="shortcut icon" th:href="@{/favicon.ico}" />
+<link th:href="@{/css/footer.css}" rel="stylesheet" />
+<link th:href="@{/css/shop-header.css}" rel="stylesheet" />
+<link th:href="@{/css/bootstrap-4.5.2.min.css}" rel="stylesheet" />
+<script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+<script th:src="@{/js/popper-2.6.0.min.js}"></script>
+<script th:src="@{/js/bootstrap-4.5.2.min.js}"></script>
+<script th:src="@{/js/jquery.validate-1.19.2.min.js}"></script>
+<script th:src="@{/js/shop/shop-product.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<link th:href="@{/css/scrollbar.css}" rel="stylesheet">
+
+
+<title>T-one 商品頁面</title>
+<style>
+.container {
+	margin-left: 290px;
+}
+
+h5 {
+	width: 700px;
+	margin: 10px auto;
+	padding: 0 25px;
+}
+
+#img {
+	width: 260px;
+	max-height: 260px;
+}
+
+#info {
+	display: flex;
+	align-items: center;
+	padding: 25px;
+	box-shadow: 2px 2px 5px rgba(158, 158, 158, 0.5);
+	width: 700px;
+	margin: 15px auto;
+	background-color: rgba(255, 255, 255, 0.3);
+}
+
+#info * {
+	font-size: 14px;
+}
+
+#info>div {
+	margin-left: 25px;
+}
+
+#content {
+	padding: 25px;
+	width: 700px;
+	margin: 25px auto;
+}
+
+.products-number-choice {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin: 0;
+}
+
+.btn-reduce-number, .btn-add-number {
+	text-align: center;
+	width: 20px;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.btn-reduce-number p, .btn-add-number p {
+	width: 100%;
+	height: 100%;
+	background-color: lightgray;
+	border-radius: 3px;
+	margin: auto 0;
+}
+
+.btn-reduce-number p:hover, .btn-add-number p:hover {
+	cursor: pointer;
+}
+
+.show-products-number {
+	width: 30px;
+	text-align: center;
+}
+
+#title {
+	display: flex;
+	align-items: center;
+	margin: 5px 0;
+}
+
+#wish {
+	margin: 0 15px;
+}
+
+#wish:hover {
+	cursor: pointer;
+}
+
+#pname {
+	margin-right: 10px;
+	font-weight: bold;
+	font-size: 20px
+}
+
+#sub_name {
+	margin: 0px;
+	margin-bottom: 5px;
+	color: #3d5d63;
+}
+
+#msg_add, #msg_remove {
+	padding: 10px 10px;
+	background-color: rgba(86, 86, 86, 0.9);
+	width: 200px;
+	color: white;
+	text-align: center;
+	border-radius: 5px;
+	position: absolute; /*絕對位置*/
+	top: 50%; /*從上面開始算，下推 50% (一半) 的位置*/
+	left: 50%; /*從左邊開始算，右推 50% (一半) 的位置*/
+	margin-top: -10px; /*高度的一半*/
+	margin-left: -100px;
+	display: none;
+}
+
+#description {
+	color: #355f96;
+	font-size: 14px;
+}
+
+#types {
+	display: flex;
+	justify-content: left;
+	margin-bottom: 10px;
+	flex-wrap: wrap;
+	flex-flow: row wrap;
+}
+
+#type {
+	display: flex;
+	align-content: center;
+	background-color: #3b61a8;
+	padding: 2px 5px;
+	color: white;
+	margin: 5px 7px 5px 0;
+	border-radius: 3px;
+	height:25px;
+	padding:0 5px;
+}
+#type a{
+	align-items: center;
+	height:25px;
+	padding-top: 3px;
+}
+
+#type span {
+	font-size: 14px;
+	height:25px;
+}
+
+p {
+	margin: 10px 0;
+}
+
+.os {
+	margin-right: 10px;
+	opacity: 0.5;
+}
+
+.os:hover {
+	margin-right: 10px;
+	opacity: 1;
+}
+
+#m_w {
+	display: flex;
+	align-items: center;
+}
+
+a {
+	color: white;
+}
+
+#type:hover * {
+	color: white;
+	background-color: #5d98cf;
+	text-decoration: none;
+}
+
+#type:hover {
+	background-color: #5d98cf;
+}
+
+#add_btn {
+	background-color: #e6c1c8;
+	border: none;
+	color: #954A45;
+}
+
+#addline {
+	color: gray;
+	text-decoration: line-through;
+	font-size: 12px;
+}
+
+#lowprice {
+	color: #e30800;
+	font-weight: bold;
+	margin-left: 4px;
+}
+
+/*從這開始是左邊固定的nav bar  */
+body {
+	margin: 0;
+	height: auto;
+}
+
+.icon-bar {
+	position: fixed;
+	top: 55%;
+	left: 160px;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	box-shadow: 2px 2px 3px #62758c;
+	border: 1px solid #e6c1c8;
+}
+
+.icon-bar>div {
+	text-align: center;
+	background-color: rgba(0, 39, 66, 0.95);;
+	width: 160px;
+	color: #90bcf5;
+	padding: 5px 5px;
+	font-size: 15px;
+	border-bottom: 1px solid #004491;
+}
+
+.icon-bar p {
+	color: #e3e3e3;
+	margin: 8px 0 !important;
+}
+
+.a a {
+	color: #90bcf5;
+	margin: 2px 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.a:hover {
+	background-color: #003f87;
+	cursor: pointer;
+}
+
+.a:hover a {
+	color: white;
+	text-decoration: none;
+}
+
+#toggle {
+	width: 100%;
+	height: 130px;
+	background: #cadadb;
+	text-align: center;
+	opacity: 0.7;
+	display: none;
+	padding-top: 43px;
+	position: absolute;
+	z-index: 100;
+}
+
+#toggle2 {
+	width: 100%;
+	height: 130px;
+	background: #cadadb;
+	text-align: center;
+	opacity: 0.7;
+	display: none;
+	padding-top: 43px;
+	position: absolute;
+	z-index: 100;
+}
+
+#togglew {
+	width: 100%;
+	height: 130px;
+	background: #cadadb;
+	text-align: center;
+	opacity: 0.7;
+	display: none;
+	padding-top: 43px;
+	position: absolute;
+	z-index: 100;
+}
+
+#togglew2 {
+	width: 100%;
+	height: 130px;
+	background: #cadadb;
+	text-align: center;
+	opacity: 0.7;
+	display: none;
+	padding-top: 43px;
+	position: absolute;
+	z-index: 100;
+}
+
+.forumbtn {
+	text-decoration: none;
+	color:#c9817f;
+	border:1px solid #c9817f;
+	font-size: 18px;
+	padding:6px 8px;
+	border-radius: 4px;
+}
+
+.forumbtn:hover {
+	text-decoration: none;
+	color: white;
+	border-radius: 4px;
+	background-color:#e3b1af;
+	border-color:#e3b1af;
+}
+</style>
+
+
+</head>
+<body style="background-image: url('/images/shop/img/color04.jpg'); background-attachment: fixed;">
+	<div id="toggle">
+		<br />
+		<br />
+		商品已放入購物車
+	</div>
+	<div id="toggle2">
+		<br />
+		<br />
+		商品已在購物車
+	</div>
+	<div id="togglew">
+		<br />
+		<br />
+		商品已放入願望清單
+	</div>
+	<div id="togglew2">
+		<br />
+		<br />
+		已從願望清單中移除
+	</div>
+	<div id="wrapper" style="height: 1100px">
+		<div th:if="${session.currentUser!=null}">
+			<div th:replace="shop-header :: #header-wrapper"></div>
+		</div>
+		<div th:if="${session.currentManager}">
+			<div th:replace="shop-header :: #header-wrapper-manager"></div>
+		</div>
+		<div th:if="${session.currentManager==null} and ${session.currentUser==null}">
+			<div th:replace="shop-header :: #header-wrapper-unlogin"></div>
+		</div>
+		<div class="container mt-5">
+			<div id="info">
+				<img id="img" th:src="@{${product.photosImagePath}}">
+				<div>
+					<div id="title">
+						<input type="hidden" th:value="${product.p_id}" id="p_id" />
+						<span id="pname" th:text="${product.p_name}"></span>
+						<div th:if="${session.currentUser}" th:switch="${inWishList}">
+							<div>
+								<img th:case="false" id="wish" src="/images/shop/img/like1.png" width="25px" />
+							</div>
+							<div>
+								<img th:case="true" id="wish" src="/images/shop/img/like.png" width="25px" />
+							</div>
+						</div>
+					</div>
+					<div id="sub_name" th:text="${product.sub_name}"></div>
+					<div id="m_w" th:if="${product.mac}=='y' or ${product.windows}=='y'">
+						<div>
+							<a th:href="@{/shop/list/os(os='windows')}">
+								<img class="os" th:if="${product.windows}=='y'" src="/images/shop/img/windows.png" width="18px">
+							</a>
+						</div>
+						<div>
+							<a th:href="@{/shop/list/os(os='mac')}">
+								<img class="os" th:if="${product.mac}=='y'" src="/images/shop/img/apple.png" width="20px">
+							</a>
+						</div>
+					</div>
+					<p th:if="${product.price*product.discount==product.price}">
+						<span th:text="'單價 : NT$'+${product.price}"></span>
+					</p>
+					<p th:unless="${product.price*product.discount==product.price}">
+						<span th:text="'單價 : '"></span>
+						<span id="addline" th:text="'NT$'+${product.price}"></span>
+						<span id="lowprice" th:text="'NT$'+${#numbers.formatDecimal(product.price*product.discount,1,0)}"></span>
+					</p>
+					<p th:text="'發行商 : '+${product.publisher}"></p>
+					<p th:if="${product.category!='遊戲週邊'}" th:text="'發行日期 : '+${product.release_date}"></p>
+					<div id="types" th:if="${type}">
+						<div id="type" th:each="t:${type}">
+							<a th:href="@{/shop/list/tag(tag=${t.gameType})}">
+								<span th:text="${t.gameType}"></span>
+							</a>
+						</div>
+					</div>
+
+					<div th:if="${session.currentUser}" class="products-number-choice">
+						<input type="hidden" th:value="${product.p_id}" id="p_id2" />
+						<div class="number-title">數量</div>
+						<div class="btn-reduce-number">
+							<p>-</p>
+						</div>
+						<div class="show-products-number" id="ord_num">1</div>
+						<div class="btn-add-number">
+							<p>+</p>
+						</div>
+						<button type="submit" class="btn btn-info btn-sm" id="add_btn">加入購物車</button>
+					</div>
+				</div>
+			</div>
+			<div id="content">
+				<div th:text="'關於'+${product.p_name}"></div>
+				<hr>
+				<div id="description" th:text="${product.description}"></div>
+			</div>
+			<div id="content">
+				<div th:text="'虛擬商品購買注意事項'"></div>
+				<hr>
+				<div id="description">若為虛擬商品，無實體物品，購買前請慎選所需求之商品，一經付款完成交易後即無法退換貨。 序號請玩家妥善保存，為確保序號安全，取得序號後請隨即儲值！若序號遺失，恕無法再次補發。
+					本次購物所得紅利積點於完成付款以及交易後方會獲得。</div>
+			</div>
+			<div id="content" th:if="${product.forum_id!=0}">
+				<a class="forumbtn" th:href="@{/article/list(forumID=${product.forum_id})}" th:text="${'前往討論區 >>'}"></a>
+			</div>
+		</div>
+		<div class="icon-bar">
+			<div>
+				<div class="a">
+					<a th:href="@{/shop/list}">所有商品</a>
+				</div>
+			</div>
+			<div>
+				<div class="a">
+					<a th:href="@{/shop/list/sale}">特惠商品</a>
+				</div>
+			</div>
+			<div>
+				<p>依商品分類瀏覽</p>
+				<div class="a">
+					<a th:href="@{/shop/list?category=PC}">PC</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list?category=TV}">TV</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list?category=遊戲週邊}">遊戲週邊</a>
+				</div>
+			</div>
+			<div>
+				<p>依作業系統瀏覽</p>
+				<div class="a">
+					<a th:href="@{/shop/list/os?os=windows}">Windows</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list/os?os=mac}">macOS</a>
+				</div>
+			</div>
+			<div>
+				<p>依熱門標籤瀏覽</p>
+				<div class="a">
+					<a th:href="@{/shop/list/tag?tag=動作}">動作</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list/tag?tag=冒險}">冒險</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list/tag?tag=單機}">單機</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list/tag?tag=策略}">策略</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list/tag?tag=運動}">運動</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list/tag?tag=角色扮演}">角色扮演</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list/tag?tag=日本動畫}">日本動畫</a>
+				</div>
+			</div>
+		</div>
+		<div th:replace="footer :: #footer-wrapper"></div>
+	</div>
+</body>
+</html>

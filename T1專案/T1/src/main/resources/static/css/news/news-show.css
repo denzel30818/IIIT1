@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+/* 讓英文自動換行 */
+#wrapper{
+	word-break:break-all;
+}
+
+.image img{
+	width: 801px;
+}
+
+.newsCommentDiv{
+	min-height: 50px;
+	padding:8px;
+	background-color: #fbfbfb;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+/* 右邊廣告 */
+
+.tab-products-container{
+	position: fixed;
+  	top: 53.5%;
+  	right:15%;
+  	-webkit-transform: translateY(-50%);
+  	-ms-transform: translateY(-50%);
+  	transform: translateY(-50%);
+	padding:0 20px;
+}

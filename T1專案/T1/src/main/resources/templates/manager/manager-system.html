@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" th:href="@{/favicon.ico}" />
+<link th:href="@{/css/header.css}" rel="stylesheet">
+<link th:href="@{/css/footer.css}" rel="stylesheet">
+<link th:href="@{/css/bootstrap-4.5.2.min.css}" rel="stylesheet">
+<script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+<script th:src="@{/js/popper-2.6.0.min.js}"></script>
+<script th:src="@{/js/bootstrap-4.5.2.min.js}"></script>
+<link th:href="@{/css/scrollbar.css}" rel="stylesheet">
+
+<style>
+a {
+	color: #004B97;
+}
+</style>
+
+<title>T-one 管理系統</title>
+
+</head>
+
+<body style="background-image: url('/images/shop/img/color04.jpg'); background-attachment: fixed;">
+
+	<div id="wrapper">
+		<div th:replace="header :: #header-wrapper-manager"></div>
+
+		<div class="container text-center mt-4">
+			<h3>T-one 管理系統</h3>
+		</div>
+
+		<div class="container d-flex flex-wrap justify-content-center align-items-center mt-5" style="height: 640px; width: 780px;">
+
+			<div style="height: 300px; width: 300px; border: 1px solid #ccc;" class="mx-4 shadow">
+				<div class="text-center mt-4">
+					<img th:src="@{/images/index/joker.png}" height="50" width="50">
+				</div>
+				<div class="navbar justify-content-center mt-2">
+					<ul class="navbar-nav text-center">
+						<li style="font-size: 24px;">會員</li>
+						<li class="nav-item">
+							<a class="nav-link py-1" th:href="@{/manager/memberUpdate}">會員管理</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link py-1" th:href="@{/manager/memberBirthday}">當月壽星</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link py-1" th:href="@{/manager/memberBanned}">黑名單管理</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link py-1" th:href="@{/manager/feedback}">客戶回覆</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div style="height: 300px; width: 300px; border: 1px solid #ccc;" class="mx-4 shadow">
+				<div class="text-center mt-4">
+					<img th:src="@{/images/index/food-cart.png}" height="50" width="50">
+				</div>
+				<div class="navbar justify-content-center mt-2">
+					<ul class="navbar-nav text-center">
+						<li style="font-size: 24px;">商城</li>
+						<li class="nav-item">
+							<a class="nav-link py-1" th:href="@{/products/list}">商品上架</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link py-1" th:href="@{/products/productcategory/list}">商品型別管理</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link py-1" th:href="@{/products/gametype/list}">遊戲類別管理</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link py-1" th:href="@{/products/supplier/list}">供應商管理</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link py-1" th:href="@{/member/status}">訂單管理</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div style="height: 300px; width: 300px; border: 1px solid #ccc;" class="mx-4 mt-4 shadow">
+				<div class="text-center mt-4">
+					<img th:src="@{/images/index/fireworks.png}" height="50" width="50">
+				</div>
+				<div class="navbar justify-content-center mt-2">
+					<ul class="navbar-nav text-center">
+						<li style="font-size: 24px;">新聞</li>
+						<li class="nav-item mt-3">
+							<a class="nav-link py-1" th:href="@{/news/showFormForAdd}">快速發文</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link py-1" th:href="@{/news/list}">已發新聞</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link py-1" th:href="@{/newsArchive/archive}">新聞檔案庫</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div style="height: 300px; width: 300px; border: 1px solid #ccc;" class="mx-4 mt-4 shadow">
+				<div class="text-center mt-4">
+					<img th:src="@{/images/index/popcorn.png}" height="50" width="50">
+				</div>
+				<div class="navbar justify-content-center mt-2">
+					<ul class="navbar-nav text-center">
+						<li style="font-size: 24px;">文章</li>
+						<li class="nav-item mt-3">
+							<a class="nav-link py-1" th:href="@{/article/articleManagementSystem}">文章管理</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link py-1" th:href="@{/articletype/list}">討論版管理</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link py-1" th:href="@{/article/announcementManage}">討論版公告管理</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+		<div th:replace="footer :: #footer-wrapper"></div>
+	</div>
+
+</body>
+</html>

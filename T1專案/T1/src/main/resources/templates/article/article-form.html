@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" th:href="@{/favicon.ico}" />
+<link th:href="@{/css/header.css}" rel="stylesheet">
+<link th:href="@{/css/footer.css}" rel="stylesheet">
+<link th:href="@{/css/bootstrap-4.5.2.min.css}" rel="stylesheet">
+<script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+<script th:src="@{/js/popper-2.6.0.min.js}"></script>
+<script th:src="@{/js/bootstrap-4.5.2.min.js}"></script>
+<script th:src="@{/js/ckeditor.js}"></script>
+<link th:href="@{/css/scrollbar.css}" rel="stylesheet">
+
+<title>T-one 編輯文章</title>
+</head>
+
+<body style="background-image: url('/images/shop/img/color04.jpg'); background-attachment: fixed;">
+
+	<div id="wrapper">
+		<div th:if="${session.currentUser!=null}">
+			<div th:replace="header :: #header-wrapper"></div>
+		</div>
+		<div th:if="${session.currentManager}">
+			<div th:replace="header :: #header-wrapper-manager"></div>
+		</div>
+		<div th:if="${session.currentManager==null} and ${session.currentUser==null}">
+			<div th:replace="header :: #header-wrapper-unlogin"></div>
+		</div>
+
+		<div class="container pt-3">
+			<h3 style="font-weight: 900">新增文章</h3>
+			<hr>
+
+			<form action="#" th:action="@{/article/save(forumID=${forumID})}" th:object="${article}" method="post"
+				enctype="multipart/form-data">
+
+				<input type="hidden" th:field="*{id}">
+				<input type="hidden" th:field="${forumID}">
+
+				<div>
+					<span class="mb-2" style="font-weight: 600">文章類型 &nbsp;</span>
+					<input type="radio" id="chat" name="type" value="閒聊" checked>
+					<label for="chat" class="form-label">閒聊 &nbsp;</label>
+					<input type="radio" id="method" name="type" value="攻略">
+					<label for="method" class="form-label">攻略 &nbsp;</label>
+					<input type="radio" id="question" name="type" value="提問">
+					<label for="question" class="form-label">提問 &nbsp;</label>
+					<input type="radio" id="comment" name="type" value="心得">
+					<label for="comment" class="form-label">心得 &nbsp;</label>
+					<input type="radio" id="other" name="type" value="其他">
+					<label for="other" class="form-label">其他 &nbsp;</label>
+				</div>
+
+				<div class="mb-3">
+					<label for="title" class="form-label" style="font-weight: 600;">標題</label>
+					<input type="text" id="title" th:field="*{title}" class="form-control" placeholder="請輸入標題" maxlength="200">
+				</div>
+
+				<div class="mb-3">
+					<label for="body" class="form-label" style="font-weight: 600;">內容</label>
+					<textarea id="editor" th:field="*{body}" class="form-control" placeholder="請輸入內容" style="width: 100%; height: 200px;"></textarea>
+				</div>
+
+				<div class="mb-3">
+					<button id="submit" type="submit" class="btn col-2" style="background-color: #47afff; color: #fff;">送出</button>
+				</div>
+				<hr>
+				<a th:href="@{/article/list(forumID=${forumID})}" th:text="'<< 返回文章列表'" style="color: #5e86ad;"></a>
+			</form>
+			<div id="gogogo" style="color: transparent; margin-top: 5px; width: 800px; height: 100px; cursor: pointer"></div>
+			<script>
+		            $("#gogogo").on("click",function(){
+			        $("#title").val('【情報】《Apex Legends》手遊由騰訊主導開發');
+			        $(".ck-content p").html('EA已經多次提到《Apex Legends》手遊將於2021年上線的事情了，但是關於本作的詳細訊息卻很少。近日多位消息人士接受IGN印度的採訪時表示，《Apex Legends》手遊的開發是由騰訊掌舵，EA的Respawn工作室擔任監管角色。');
+			        $(".ck-content").append('')
+			        $(".ck-content").append('這和動視處理《Call of Duty》手遊的方式相似，在騰訊引領開發的同時，由原本開發商監管。EA預計讓《Apex Legends》手遊在今年第三季度上線。並且下個月還將推出NS版本，未來還有跨平台聯機功能。')
+		            });
+		            </script>
+		</div>
+
+		<div th:replace="footer :: #footer-wrapper"></div>
+	</div>
+
+	<script th:src="@{/js/articles/classicEditor.js}"></script>
+</body>
+
+</html>

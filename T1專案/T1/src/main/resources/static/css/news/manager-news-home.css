@@ -1,0 +1,156 @@
+@charset "UTF-8";
+
+/* 讓英文自動換行 */
+#wrapper{
+	word-break:break-all;
+}
+
+.news-article-body-div{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding: 5px;
+	height: 35px;
+	width: 700px;
+}
+
+#news-home-cover{
+	height: 60px;
+	width: 60px;
+}
+
+.table table-hover{
+	box-shadow: 0 4px 8px 0 rgb(228, 228, 228);
+}
+
+.td-line-height{
+	width:107px;
+	line-height:52px;
+}
+
+.td-line-height-btn{
+	width: 175px;
+}
+
+
+#oldNews-search{
+	color:white;
+	float: right;
+	margin-top: 7px
+}
+
+/* 搜尋框框 */
+.searchbox {
+	display: flex;
+}
+
+#key {
+	border: 1px solid white;
+	border-right: none;
+	border-radius: 18px 0 0 18px;
+	background-color: white;
+	padding: 5px 0 5px 15px;
+	font-size: 15px;
+}
+
+#key::placeholder {
+	color: lightgray;
+	font-size: 14px;
+}
+
+#key:focus {
+	border: 2px solid rgba(132, 170, 217, 0.7);
+	outline: none;
+	border-right: none;
+	border-style: outset;
+	border-right-style: none;
+}
+
+#key:focus+div {
+	border: 2px solid rgba(132, 170, 217, 0.7);
+	border-left: none;
+	outline: none;
+	border-style: outset;
+	border-left-style: none;
+}
+
+#loupe {
+	margin: 0;
+	border: 1px solid white;
+	border-left: none;
+	padding: 2px 12px 0 5px;
+	border-radius: 0 18px 18px 0;
+	background-color: white;
+}
+
+
+/* 分頁 */
+#board-master{
+width: auto;
+background: #003060;
+padding: 0;
+border: solid 1px #003060;
+}
+#board-master>ul{
+overflow: hidden;
+margin: 0;
+padding: 10px 20px 0 20px;
+}
+#board-master>ul>li{
+list-style-type: none;
+}
+#board-master>ul>li>a{
+text-decoration: none;
+font-size: 16px;
+color: white;
+float: left;
+padding: 10px;
+margin-left: 5px;
+width: 84px;
+text-align: center;
+}
+/* 各新聞列表 */
+#board-master>div {
+clear:both;
+height:0;
+overflow:hidden;
+visibility:hidden;
+}
+/*第一筆的底色*/
+span:target ~ #board-master > ul li:first-child a {
+background:#003060;
+}
+span:target ~ #board-master > div:first-of-type {
+visibility:hidden;
+height:0;
+
+}
+/*頁籤變換&第一筆*/
+span ~ #board-master > ul li:first-child a{
+background: #005AB5;
+}
+#tab-1:target ~ #board-master > ul li a[href$="#tab-1"],
+#tab-2:target ~ #board-master > ul li a[href$="#tab-2"],
+#tab-3:target ~ #board-master > ul li a[href$="#tab-3"],
+#tab-4:target ~ #board-master > ul li a[href$="#tab-4"],
+#tab-5:target ~ #board-master > ul li a[href$="#tab-5"] {
+background: #005AB5;
+}
+/*頁籤內容顯示&第一筆*/
+span ~ #board-master > div:first-of-type,
+#tab-1:target ~ #board-master > div.tab-content-1,
+#tab-2:target ~ #board-master > div.tab-content-2,
+#tab-3:target ~ #board-master > div.tab-content-3,
+#tab-4:target ~ #board-master > div.tab-content-4,
+#tab-5:target ~ #board-master > div.tab-content-5 {
+visibility:visible;
+height:auto;
+background: #fff;
+}
+/* 隱藏span */
+#tab-1,
+#tab-2,
+#tab-3,
+#tab-4,
+#tab-5{
+display: none;
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" th:href="@{/favicon.ico}" />
+<link th:href="@{/css/header.css}" rel="stylesheet">
+<link th:href="@{/css/footer.css}" rel="stylesheet">
+<link th:href="@{/css/bootstrap-4.5.2.min.css}" rel="stylesheet">
+<script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+<script th:src="@{/js/popper-2.6.0.min.js}"></script>
+<script th:src="@{/js/bootstrap-4.5.2.min.js}"></script>
+
+<link th:href="@{/css/news/news-show.css}" rel="stylesheet">
+<link th:href="@{/css/scrollbar.css}" rel="stylesheet">
+
+<title>T-one 新聞後台系統-新聞預覽</title>
+</head>
+<style type="text/css">
+.btn.btn-info.btn-sm{
+background-color:#47afff;
+border: #47afff;
+color:white;
+padding:5px 8px;
+}
+</style>
+
+<body style="background-image: url('/images/shop/img/color04.jpg'); background-attachment: fixed;">
+
+	<div id="wrapper">
+		<div th:replace="header :: #header-wrapper-manager"></div>
+
+		<div class="container" th:each="tempNews:${news}">
+			<a th:href="@{/newsArchive/showFormForUpdate(newsId=${tempNews.id})}"
+				class="btn btn-info btn-sm"> 編輯 </a> <a
+				th:href="@{/newsArchive/delete(newsId=${tempNews.id})}"
+				class="btn btn-danger btn-sm"
+				onclick="if (!(confirm('您確定要刪除這則新聞嗎?'))) return false"> 刪除 </a>
+
+			<div class="row">
+
+				<div class="col-lg-9" id="board-master">
+					<table class="table table-responsive-md"
+						style="box-shadow: 0 4px 8px 0 rgb(228, 228, 228);background-color: white;">
+						<tr>
+							<th>
+								<h3 th:text="${news.title}"></h3>
+								<p>
+									<span th:text="'( T1News 記者 '+*{news.manager} +' 報導 ) ' + ${#dates.format(news.postTime,'yyyy-MM-dd HH:mm:ss')}" style="color: gray; font-size: 14px;"></span>
+								</p>
+							</th>
+						</tr>
+
+						<tr>
+							<td>
+								<div th:utext="${news.article}"></div>
+							</td>
+						</tr>
+
+					</table>
+					
+					
+					
+					
+				</div>
+
+				<!-- 商城廣告連結 -->
+				<div class="col-lg-3">
+					<div class="right-column">				
+						<div class="tab-products-container">							
+							<div class="img_a">
+								<a href="https://googleads.g.doubleclick.net/pcs/click?xai=AKAOjst1_fvD7JcmnEgAB67Lj36H7t2_4HtV7GU6PoXR9-LXXxnlR8-Q55vZoUvJ0bP2ry6X0vdsxPSFi2GhMk58FjU5K_lhwUqHyz2RxEixDfJozdlvqQxqgAvLentjGNxT_U5BMSptg7XEMoNZzk5ptGMf3yB08aa7z_NwCbH0QUOk4mqE9BGHGaxh48zcPLkpA9qViY9b0Tu5QgVTpNdy4qmIl5PR8YJxQs0PMpc7kRFeqZg_0Ci7p06RPNODmtm4RspuqegDLTW0em0pNnnTqs-NT4KDQw&sai=AMfl-YTE4MzhSHhLgvmMTuIcJUbnjQ6tM1E79nDeLwlBaMNZPdMpmYqQAqoks2Ha-4jjST1m_AKcfnGO38l9HBwPosZ6mh-BlrwhBTIewegxQhDyIX-3lgLlzPfQECJCk51TC-iDvg&sig=Cg0ArKJSzPz7yccqJ5vb&adurl=https://app.adjust.com/8ls0k7r&nm=22&nx=165&ny=-259&mb=2&clkt=154">
+									<img src="/images/news/newsImages/20210214.jfif">
+								</a>
+							</div>									
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div th:replace="footer :: #footer-wrapper"></div>
+	</div>
+
+</body>
+
+</html>

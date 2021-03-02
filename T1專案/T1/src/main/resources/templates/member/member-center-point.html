@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" th:href="@{/favicon.ico}" />
+<link th:href="@{/css/header.css}" rel="stylesheet">
+<link th:href="@{/css/footer.css}" rel="stylesheet">
+<link th:href="@{/css/bootstrap-4.5.2.min.css}" rel="stylesheet">
+<script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+<script th:src="@{/js/popper-2.6.0.min.js}"></script>
+<script th:src="@{/js/bootstrap-4.5.2.min.js}"></script>
+
+<link th:href="@{/css/member/member-center-public.css}" rel="stylesheet">
+<link th:href="@{/css/member/member-center-point.css}" rel="stylesheet">
+<link th:href="@{/css/scrollbar.css}" rel="stylesheet">
+
+<title>T-one 紅利點數</title>
+
+</head>
+
+<body style="background-image: url('/images/shop/img/color04.jpg'); background-attachment: fixed;">
+
+	<div id="wrapper">
+		<div th:replace="header :: #header-wrapper"></div>
+
+		<div id="member-center-wrapper" class="container">
+			<div class="row d-flex justify-content-center">
+				<div id="member-center-bar" class="col-2 p-0">
+
+					<div id="member-center-bar-top" class="p-0">
+						<div class="text-center">會員中心</div>
+					</div>
+
+					<div id="member-center-bar-body">
+						<ul class="nav nav-pills flex-column text-center">
+							<li class="nav-item">
+								<a class="nav-link" th:href="@{/member/info}">會員資料</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" th:href="@{/member/password}">修改密碼</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" th:href="@{/member/article}">文章管理</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" th:href="@{/member/orders}">訂單查詢</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active disabled">紅利點數</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" th:href="@{/member/collectionList}">收藏清單</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div id="member-center-content" class="offset-1 col-9 p-4">
+					<div id="member-center-content-top">紅利點數</div>
+					<hr>
+					<div class="d-flex justify-content-around align-items-center">
+						<div id="member-center-content-body">
+							<table class="table table-hover text-center">
+								<thead style="background-color: #3b5573;color: #fff;">
+									<tr>
+										<th>紅利事件</th>
+										<th>獲得紅利</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>觀看天竺鼠車車</td>
+										<td>20 point</td>
+									</tr>
+									<tr>
+										<td>上課划手機</td>
+										<td>100 point</td>
+									</tr>
+									<tr>
+										<td>24小時不睡覺</td>
+										<td>888 point</td>
+									</tr>
+									<tr>
+										<td>珍奶不加珍珠不要奶</td>
+										<td>6666 point</td>
+									</tr>
+									<tr>
+										<td>土托魚羹點乾的</td>
+										<td>8787 point</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<div class="d-flex justify-content-center">
+								<ul class="pagination">
+									<li class="page-item disabled">
+										<a class="page-link" href="#">上一頁</a>
+									</li>
+									<li class="page-item active">
+										<a class="page-link" href="#">1</a>
+									</li>
+									<li class="page-item">
+										<a class="page-link" href="#">2</a>
+									</li>
+									<li class="page-item">
+										<a class="page-link" href="#">3</a>
+									</li>
+									<li class="page-item">
+										<a class="page-link" href="#">下一頁</a>
+									</li>
+								</ul>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div th:replace="footer :: #footer-wrapper"></div>
+	</div>
+
+</body>
+
+</html>

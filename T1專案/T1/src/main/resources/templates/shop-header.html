@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Kalam&display=swap" rel="stylesheet">
+
+</head>
+<body>
+	<div id="header-wrapper-unlogin">
+		<div class="container-fluid p-0" id="top-bar-unlogin">
+			<div style="position: absolute; top: 10px; left: 80px; z-index: 1000; padding: 5px; font-family: 'Kalam', cursive;">
+				<a th:href="@{/shop}"><img id="logo" th:src="@{/images/shop/img/logo.png}" height="33"></a> <a th:href="@{/shop}"
+					style="font-family: 'Kalam', cursive; text-decoration: none; color: #fff; position: fixed; font-size: 28px;">T-one Shop</a>
+			</div>
+			<div class="container-fluid navbar justify-content-end p-0" id="top-menu1-unlogin">
+				<ul class="nav">
+					<li class="nav-item"><a th:href="@{/login}" class="nav-link p-0 mr-4">登入</a></li>
+					<li class="nav-item"><a th:href="@{/register}" class="nav-link p-0 mr-4">註冊</a></li>
+					<li class="nav-item"><a th:href="@{/index}" class="nav-link p-0 mr-4">T-one 首頁</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div id="header-wrapper">
+		<div class="container-fluid p-0" id="top-bar">
+			<div style="position: absolute; top: 10px; left: 80px; z-index: 1000; padding: 5px; font-family: 'Kalam', cursive;">
+				<a th:href="@{/shop}"><img id="logo" th:src="@{/images/shop/img/logo.png}" height="33"></a> <a th:href="@{/shop}"
+					style="font-family: 'Kalam', cursive; text-decoration: none; color: #fff; position: fixed; font-size: 28px;">T-one Shop</a>
+			</div>
+			<div class="container-fluid navbar justify-content-end p-0" id="top-menu1">
+				<ul class="nav">
+					<li class="nav-item"><a th:href="@{/member/mycart}" class="nav-link p-0 mr-4">
+							<div id="cart">
+								<img th:src="@{/images/shop/img/header-cart.png}" width="24" height="24">
+								<div id="cartnum" th:text="${cartnum}"></div>
+							</div>
+					</a></li>
+					<li class="nav-item"><a th:href="@{/member/mywishlist}" class="nav-link p-0 mr-4"> <img
+							th:src="@{/images/shop/img/header-wish.png}" width="20" height="20">
+					</a></li>
+					<li class="nav-item"><img alt="QQ" th:src="@{${session.currentUser.memberPhotoUri}}" class="rounded-circle mx-2"
+						width="20" height="20"></li>
+					<li class="nav-item"><a th:href="@{/member/info}" th:text="${session.currentUser.account}" class="nav-link p-0 mr-4">
+							使用者名稱 </a></li>
+					<li class="nav-item"><a th:href="@{/logout}" class="nav-link p-0 mr-4">登出</a></li>
+					<li class="nav-item"><a th:href="@{/index}" class="nav-link p-0 mr-4">T-one 首頁</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div id="header-wrapper-manager">
+		<div class="container-fluid p-0" id="top-bar">
+			<div style="position: absolute; top: 10px; left: 80px; z-index: 1000; padding: 5px; font-family: 'Kalam', cursive;">
+				<a  th:href="@{/shop}"><img id="logo" th:src="@{/images/shop/img/logo.png}" height="33"></a> <a th:href="@{/shop}"
+					style="font-family: 'Kalam', cursive; text-decoration: none; color: #fff; position: fixed; font-size: 28px;">T-one Shop</a>
+			</div>
+			<div class="container-fluid navbar justify-content-end p-0" id="top-menu1">
+				<ul class="nav">
+					<li class="nav-item"><img th:src="@{${session.currentManager.managerPhotoUri}}" class="rounded-circle mx-2" width="20"
+						height="20"></li>
+					<li class="nav-item"><a th:href="@{/manager/system}" th:text="${session.currentManager.managerName}"
+						class="nav-link p-0 mr-4"></a></li>
+					<li class="nav-item"><a th:href="@{/manager/system}" class="nav-link p-0 mr-4">後台</a></li>
+					<li class="nav-item"><a th:href="@{/logout}" class="nav-link p-0 mr-4">登出</a></li>
+					<li class="nav-item"><a th:href="@{/index}" class="nav-link p-0 mr-4">T-one 首頁</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

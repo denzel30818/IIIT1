@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+/* 讓英文自動換行 */
+#wrapper{
+	word-break:break-all;
+}
+
+.image img{
+	width: 801px;
+}
+
+
+

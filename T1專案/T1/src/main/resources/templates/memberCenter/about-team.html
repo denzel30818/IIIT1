@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/redmond/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<link rel="shortcut icon" th:href="@{favicon.ico}" />
+<link th:href="@{/css/footer.css}" rel="stylesheet" />
+<link th:href="@{/css/shop-header.css}" rel="stylesheet" />
+<link th:href="@{/css/bootstrap-4.5.2.min.css}" rel="stylesheet" />
+
+<script th:src="@{/js/popper-2.6.0.min.js}"></script>
+<script th:src="@{/js/jquery.validate-1.19.2.min.js}"></script>
+
+<script th:src="@{/js/bootstrap-4.5.2.min.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script th:src="@{/js/shop/member-order-detail.js}"></script>
+<link th:href="@{/css/scrollbar.css}" rel="stylesheet">
+
+<title>T-one 團隊介紹</title>
+
+<style type="text/css">
+
+
+.info{
+
+height: 280px;
+border: 0px solid black;
+margin-bottom: 10px;
+}
+
+.show{
+
+height: 280px;
+border: 0px solid blue;
+margin-bottom: 10px;
+text-align:center;
+}
+
+.col-3{
+padding: 0px 0px !important;
+}
+
+img{
+padding-left:5px;
+}
+
+.show .tname{
+	font-size:23px;
+}
+
+.content{
+line-height:34px;
+font-size:20px;
+}
+
+
+</style>
+
+</head>
+<body style="background-image: url('/images/shop/img/color04.jpg'); background-attachment: fixed;">
+	<div id="wrapper">
+		<div th:if="${session.currentUser!=null}">
+			<div th:replace="header :: #header-wrapper"></div>
+		</div>
+		<div th:if="${session.currentManager}">
+			<div th:replace="header :: #header-wrapper-manager"></div>
+		</div>
+		<div th:if="${session.currentManager==null} and ${session.currentUser==null}">
+			<div th:replace="header :: #header-wrapper-unlogin"></div>
+		</div>
+		<div class="container">
+			<div class="row justify-content-around">
+				<div class="col-3 info "><img src="/images/shop/img/a01.jpg" width="272px"></div>
+				<div class="col-3 show"><div class="tname">朱喻璽(組長)</div><hr><div class="content">專案統整<br>會員管理系統<br>網站權限管理<br>認證與登入安全<br>討論區後台</div></div>
+				<div class="col-3 info"><img src="/images/shop/img/a02.jpg" width="272px"></div>
+				<div class="col-3 show"><div class="tname">許家誠</div><hr><div class="content">新聞面板<br>發文系統<br>新聞文章管理<br>新聞搜尋與排序<br>廣告面板設計</div></div>
+			</div>
+			<div class="row justify-content-around">
+				<div class="col-3 info"><img src="/images/shop/img/a03.jpg" width="272px"></div>
+				<div class="col-3 show"><div class="tname">陳昱中</div><hr><div class="content">商品上架後台<br>購物車功能<br>結帳系統<br>訂單系統<br>營收頁面</div></div>
+				<div class="col-3 info"><img src="/images/shop/img/a04.jpg" width="272px"></div>
+				<div class="col-3 show"><div class="tname">巴家寶</div><hr><div class="content">商品上架後台<br>聊天室與問題回報<br>商城頁面<br>願望清單<br>供應商管理系統</div></div>
+			</div>
+			<div class="row justify-content-around">
+				<div class="col-3 info"><img src="/images/shop/img/a05.jpg" width="272px"></div>
+				<div class="col-3 show"><div class="tname">黃鉑清</div><hr><div class="content">討論區看板<br>發文、瀏覽功能<br>按讚追蹤<br>留言及討論板管理<br>商品資料收集</div></div>
+				<div class="col-3 info"></div>
+				<div class="col-3 show"></div>
+			</div>
+		</div>
+		<div th:replace="footer :: #footer-wrapper"></div>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

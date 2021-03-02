@@ -1,0 +1,6 @@
+@charset "UTF-8";
+
+/* 訂單寬度 */
+#member-center-content-body>table{
+    width: 800px;
+}

@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+#register-wrapper {
+	width: 840px;
+}
+
+/* 註冊框邊線、陰影 */
+#registerField {
+	border: 1px solid lightgray;
+	box-shadow: 5px 5px 10px gray;
+	border-radius: 10px;
+	background-color: #fff;
+}
+
+/* 驗證錯誤訊息顏色、字體 */
+label.error {
+	color: red;
+	font-weight: 500;
+	font-size: 0.8em;
+	margin: auto;
+}
+
+/* 標題大小 */
+#register-wrapper legend {
+	font-size: 30px;
+}
+
+/* 加入會員按鈕寬度 */
+#add-member {
+	width: 100%
+}
+
+/* 錯誤訊息參考位置 */
+#account, #nickName, #email {
+	position: relative;
+}
+
+/* 錯誤訊息字體、顏色、邊距 ( 防js關閉被惡意註冊 ) */
+#errorAccount, #errorNickName, #errorEmail {
+	color: red;
+	font-size: 0.8em;
+	font-weight: 500;
+	margin: auto 35px;
+}
+
+/* 帳號、暱稱、信箱重複訊息顏色、定位 */
+.duplicate-error {
+	color: red;
+	font-size: 0.8em;
+	font-weight: 500;
+	position: absolute;
+}
+
+/* 帳號重複訊息位置 */
+#account-duplicate {
+	right: 30px;
+	top: 110px;
+}
+
+/* 暱稱重複訊息位置 */
+#nickName-duplicate {
+	right: 30px;
+	top: 320px;
+}
+
+/* 信箱重複訊息位置 */
+#email-duplicate {
+	right: 30px;
+	top: 517px;
+}

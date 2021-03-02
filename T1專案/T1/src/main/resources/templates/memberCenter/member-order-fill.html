@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="shortcut icon" th:href="@{favicon.ico}" />
+<link th:href="@{/css/footer.css}" rel="stylesheet" />
+<link th:href="@{/css/shop-header.css}" rel="stylesheet" />
+<link th:href="@{/css/bootstrap-4.5.2.min.css}" rel="stylesheet" />
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css">
+
+<script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script th:src="@{/js/popper-2.6.0.min.js}"></script>
+<script th:src="@{/js/bootstrap-4.5.2.min.js}"></script>
+<script th:src="@{/js/jquery.validate-1.19.2.min.js}"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script th:src="@{/js/shop/member-order-fill.js}"></script>
+<title>T-one 收件人資料</title>
+<style type="text/css">
+.p{
+margin:15px 0px 5px;
+}
+
+
+/* 0203家寶 */
+label.error {
+	color: red;
+	font-weight: 500;
+	font-size: 0.8em;
+	margin: auto;
+}
+/* 0203家寶 */
+
+#next{
+ background-color: #A5DEE4;
+	border-color:#A5DEE4;
+	color:#072369;
+ 	width:110px;
+ 	height:42px;
+   margin-left:2px;
+   border:none;
+}
+
+#next:hover{
+background-color:#6dd3de;
+}
+
+lable{
+ background-color:rgba(79, 96, 227, 0.9);
+ 
+  
+}
+#img01{
+display:flex;
+}
+
+#proimg{
+margin-left:0px;
+margin-top:2px;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover{
+background-color:#80a5e0;
+border:none;
+}
+
+
+</style>
+
+</head>
+<body style="background-image: url('/images/shop/img/color04.jpg') ;background-attachment:fixed;">
+	<div id="wrapper">
+		<div th:if="${session.currentUser!=null}">
+			<div th:replace="shop-header :: #header-wrapper"></div>		
+		</div>
+		<div th:if="${session.currentManager}">
+			<div th:replace="shop-header :: #header-wrapper-manager"></div>		
+		</div>
+		<div th:if="${session.currentManager==null} and ${session.currentUser==null}">
+			<div th:replace="shop-header :: #header-wrapper-unlogin"></div>		
+		</div>
+		<div class="container">
+			<div class="row justify-content-md-center">
+				<div class="col-md-6">
+					<div id="img01"><span><img id="proimg" src="/images/shop/img/process01.png" width="550px"></span></div>		
+				<hr>
+				<div th:object="${order1}">
+				<form action="#" th:action="@{/member/mycart/go-preview}" method="POST" enctype="multipart/form-data" name="confirmationForm" id="confirmationForm">
+				<p class="p">收件人:</p><input th:text="${order1.receiver}" type="text" id="receiver" name="receiver" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" th:field="*{receiver}">
+				<p class="p">收件人電話:</p><input th:text="${order1.receiverPhone}" type="text" id="receiverPhone" name="receiverPhone" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" th:field="*{receiverPhone}">
+				<p class="p">收件人地址:</p><input th:text="${order1.address}" type="text" id="address" name="address" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" th:field="*{address}">
+				<hr>
+				<h5 class="p">付款方式:</h5>
+				<div class="widget">
+				<fieldset>
+				<!-- -------注意Radio用法---02/05--- -->
+					<label for="visa">信用卡付款</label>
+					<input class="pay" type="radio" id="visa" th:field="*{payMethod}" th:value="信用卡付款" />
+  					<label for="atm">ATM轉帳</label>
+   					<input class="pay" type="radio" id="atm" th:field="*{payMethod}" th:value="ATM轉帳"/>
+  					<label for="cash">貨到付款</label>
+  					<input class="pay" type="radio" id="cash" th:field="*{payMethod}" th:value="貨到付款"/>
+  				</fieldset>
+  				</div>
+  				<hr>
+				<button id="next" type="submit"  class="btn btn-primary">下一步</button>
+				</form>
+				<div id="autofill" style="color:transparent;margin-top: 50px; width:100px;height:100px;cursor:pointer">111</div>
+				</div>
+				</div>
+			</div>
+		</div>
+		<div th:replace="footer :: #footer-wrapper"></div>
+	</div>
+</body>
+</html>
+
+
+
+

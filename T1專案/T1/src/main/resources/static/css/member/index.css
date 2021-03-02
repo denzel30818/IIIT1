@@ -1,0 +1,223 @@
+@charset "UTF-8";
+
+body {
+	background-image: url("/images/shop/img/color04.jpg");
+	background-attachment: fixed;
+}
+
+#wrapper {
+	height: 2700px;
+}
+
+/* 輪播器區塊大小、置中 */
+#index-carousel {
+	/* 	width: 1100px; */
+	margin-top: 0;
+}
+
+/* 輪播器圖片大小、置中 */
+#index-carousel img {
+	max-height: 594px;
+	max-width: 1361px;
+	margin: 0 8px;
+}
+
+.slick-slide {
+	opacity: 0.3;
+}
+
+.slick-slide.slick-center {
+	opacity: 1;
+}
+
+/* 輪播器圓點大小 */
+.slick-dots li button:before {
+	font-size: 10px;
+}
+
+.slick-dots {
+	bottom: -35px;
+}
+
+/* 輪播器箭頭顏色 */
+.slick-prev:before, .slick-next:before {
+	color: #BEBEBE;
+}
+
+/* 左邊功能選單區塊顏色 */
+#index-left-bar {
+	background-color: rgba(235, 235, 235, 0.5);
+	border-radius: 5px;
+}
+
+#index-left-bar li * {
+	margin-top: 8px;
+	margin-bottom: 8px;
+	font-size: 18px;
+}
+
+#index-left-bar .nav-item {
+	border-bottom: 1px dashed lightgray;
+}
+
+#index-left-bar .nav-item:last-child {
+	border-bottom: none;
+}
+
+#index-left-bar .nav-item .nav-type {
+	color: #6586bf;
+}
+
+#index-left-bar .nav-item .nav-link {
+	font-size: 17px;
+	color: #002742;
+}
+
+#index-left-bar .nav-item .nav-link:hover {
+	color: white;
+	background-color: rgba(86, 104, 130, 0.4);
+}
+
+/* 左邊功能選單圖片大小 
+#index-left-bar:first-child img {
+	height: 27px;
+	width: 27px;
+}*/
+
+/* 文章區塊邊線、大小、背景顏色 */
+#index-article {
+	/* border: 4px solid rgba(255, 191, 0,0.5); */
+	border-radius: 5px;
+	/* border-style: double ; */
+	height: 400px;
+	background-color: rgba(219, 235, 255, 0.5);
+	box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+	padding-top: 15px;
+}
+
+/* 文章區塊標題顏色 */
+#index-article-title {
+	font-size: 18px;
+	border-bottom: 1px solid #e8e8e8;
+	padding: 15px 0 !important;
+}
+
+/* 新聞、文章、左邊bar超連結顏色 */
+#index-left-bar a, #index-news-content a, #index-article a {
+	color: black;
+}
+
+/* 文章table寬度分配 */
+#index-article tr td:nth-child(2n+1) {
+	width: 15%
+}
+
+#index-article tr td:nth-child(2) {
+	width: 70%
+}
+
+/* 文章分類標題顏色、內距 */
+#index-article tr td:nth-child(1) span {
+	background-color: rgba(132, 170, 217, 0.7);
+	padding: 5px 12px;
+	border-radius: 1px;
+}
+
+#index-news-other .text-right span {
+	background-color: rgba(132, 170, 217, 0.7);
+	padding: 5px 12px;
+	border-radius: 1px;
+}
+
+/* 新聞分頁標籤顏色、圓邊 */
+#index-news-tab li {
+	width: 105px;
+	text-align: center;
+	background-color: rgba(132, 170, 217, 0.7);
+	border-radius: 5px 5px 0 0;
+	margin: 0 1px 0 0;
+	background-color: rgba(132, 170, 217, 0.7)
+}
+
+/* 新聞分頁文字顏色 */
+#index-news-tab a {
+	color: #fff;
+	font-size: 18px;
+}
+
+/* 觀看更多超連結顏色 */
+.watch-more {
+	color: #004B97 !important;
+}
+
+#news {
+	background-color: rgba(250, 250, 250, 0.3);
+	padding: 10px 30px;
+	font-size: 20px;
+	border-radius: 5px;
+	box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .02) !important;
+	color: #003163;
+}
+
+/* 新聞區塊大小 */
+#index-news {
+	height: 900px;
+}
+
+/* 新聞區塊背景顏色 */
+#index-news-content {
+	background-color: rgba(219, 235, 255, 0.5);
+	margin: 0 auto 50px;
+}
+
+#index-pc-tab img, #index-mobile-tab img, #index-host-tab img,
+	#index-theme-tab img {
+	height: 200px;
+	width: 200px;
+}
+
+/* 新聞圖片並排、大小 */
+.news-img {
+	display: inline-block;
+	height: 300px;
+	width: 200px;
+}
+
+/* 新聞標題大小、隱藏超出文字 */
+.news-content {
+	height: 100px;
+	width: 200px;
+	overflow: hidden;
+}
+
+/* 分頁按鈕背景顏色、邊線、內距 */
+.ui-tabs .ui-tabs-nav {
+	background-color: #fff;
+	border: none;
+}
+
+/* 分頁按鈕hover顏色 */
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+	background-color: #547eb3;
+}
+
+.nav-link {
+	padding: 4px 12px !important;
+}
+
+/* 分頁hover變色 */
+.enter {
+	background-color: #547eb3;
+}
+
+/* 文章區塊版面 */
+#index-article table {
+	table-layout: fixed;
+}
+
+/* 控制文章區文字溢出 */
+#index-article table th, #index-article table td {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}

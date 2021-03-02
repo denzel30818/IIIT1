@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+/* 照片大小*/
+#news-form-add-cover {
+	height: 180px;
+	width: 180px;
+}
+/* 取消紐隱藏*/
+#news_image, #cancel-upload_img {
+	display: none;
+}
+
+/* 文本編輯器最小高度 */
+.ck-editor__editable_inline {
+	max-width:825px;
+    min-height: 300px;
+}
+
+#div3 {
+	max-width:825px;
+}
+
+.image img{
+	width: 801px;
+}

@@ -1,0 +1,432 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW" xmlns:th="https://www.thymeleaf.org/">
+
+<head>
+
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="shortcut icon" th:href="@{/favicon.ico}" />
+<link th:href="@{/css/footer.css}" rel="stylesheet" />
+<link th:href="@{/css/shop-header.css}" rel="stylesheet" />
+<link th:href="@{/css/bootstrap-4.5.2.min.css}" rel="stylesheet" />
+<script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+<script th:src="@{/js/popper-2.6.0.min.js}"></script>
+<script th:src="@{/js/bootstrap-4.5.2.min.js}"></script>
+<script th:src="@{/js/jquery.validate-1.19.2.min.js}"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script th:src="@{/js/shop/shop-mainPage.js}"></script>
+<link th:href="@{/css/scrollbar.css}" rel="stylesheet">
+
+<!-- 輪播器 -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css" />
+
+<title>T-one商城</title>
+<style>
+body {
+	background-image: url("/images/shop/img/color04.jpg");
+	width:100%;
+	overflow-x:hidden;
+}
+.top{
+	margin-top:50px;
+}
+
+.container {
+	margin: 20px 0 20px 425px;
+	width: 1050px;
+	padding: 0;
+}
+
+#tabs {
+	width: 1050px !important;
+	margin: 20px 0 20px 420px;
+}
+
+#product {
+	width: 180px;
+	height: 220px;
+	border: lightgray;
+	margin: 5px 8px;
+	padding: 0;
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+#product:hover {
+	cursor: pointer;
+}
+
+.img_a {
+	height: 180px;
+	display: flex;
+	align-items: center;
+}
+
+#pimg {
+	height: 180px;
+}
+
+#product a {
+	text-decoration: none;
+}
+
+#pname {
+	text-align: center;
+	width: 180px;
+	height: 40px;
+	font-size: 15px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	color: black;
+}
+
+.pname_a {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	color: black;
+	display: block;
+	padding: 9px 5px;
+}
+
+#tabs-ul {
+	padding: 0;
+	display: flex;
+	justify-content: flex-start;
+	margin-bottom: 0;
+	margin-top: 28px;
+}
+
+#tabs-ul li {
+	list-style-type: none;
+	background-color:#fad6c8;
+	border-radius: 5px 5px 0 0;
+	width: 100px;
+	padding: 5px 10px;
+	text-align: center;
+	margin: 0 6px 0 0;
+	box-shadow: 1px 0 1px lightgray;
+	font-size: 16px;
+}
+
+#tabs-ul li:hover {
+	background-color: #EB7A77;
+}
+
+.tab.active {
+	background-color: #EB7A77 !important;
+}
+
+.tab.active a {
+	color: #f5e5e4 !important;
+}
+
+#tabs-ul li:hover a {
+	color: #f5e5e4;
+}
+
+#tabs-ul li a {
+	text-decoration: none;
+	color: #cc8c85;
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.slick-list {
+	padding: 0 !important;
+}
+
+.slick-dots {
+	bottom: -40px;
+}
+
+.carousel-img {
+	width: 1050px !important;
+	height:682px !important;
+	
+}
+
+.carousel-img img {
+	margin: auto;
+}
+
+#tab-products {
+	margin: 0;
+	padding: 25px 0 0;
+	height: auto;
+}
+
+.tab-products-container {
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	background-color: rgba(255, 240, 240,0.5);
+	box-shadow: 2px 2px 5px lightgray;
+	min-height: 210px;
+	padding: 0 30px;
+	border-top: 2px solid #EB7A77;
+	padding-top:25px;
+}
+
+.list-link {
+	margin-top:10px 0 20px 0;
+	padding: 15px 20px 25px;
+	text-align:right;
+	width:1000px;
+}
+
+.list-link a {
+	font-size: 15px;
+	color: #884C3A;
+}
+
+/*從這開始是左邊固定的nav bar  */
+body {
+	margin: 0;
+	height: auto;
+}
+
+.icon-bar {
+	position: fixed;
+	top: 55%;
+	left: 160px;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	box-shadow: 2px 2px 3px #62758c;
+	border: 1px solid #e6c1c8;
+}
+
+.icon-bar>div {
+	text-align: center;
+	background-color: rgba(0, 39, 66, 0.95);;
+	width: 160px;
+	color: #90bcf5;
+	padding: 5px 5px;
+	font-size: 15px;
+	border-bottom: 1px solid #004491;
+}
+
+.icon-bar p {
+	color: #e3e3e3;
+	margin: 8px 0 !important;
+}
+
+.a a {
+	color: #90bcf5;
+	margin: 2px 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.a:hover {
+	background-color: #003f87;
+	cursor: pointer;
+}
+
+.a:hover a {
+	color: white;
+	text-decoration: none;
+}
+
+#hotitem {
+	font-size: 20px;
+}
+</style>
+
+</head>
+
+<body style="background-image: url('/images/shop/img/color04.jpg'); background-attachment: fixed;">
+	<div id="wrapper" style="height:1900px;">
+		<div th:if="${session.currentUser!=null}">
+			<div th:replace="shop-header :: #header-wrapper"></div>
+		</div>
+		<div th:if="${session.currentManager}">
+			<div th:replace="shop-header :: #header-wrapper-manager"></div>
+		</div>
+		<div th:if="${session.currentManager==null} and ${session.currentUser==null}">
+			<div th:replace="shop-header :: #header-wrapper-unlogin"></div>
+		</div>
+		<div class="top row">
+			<div class="container">
+				<div class="wrapper">
+
+					<div id="cover" class="carousel">
+						<div class="carousel-img">
+							<a href="/shop/product/59"><img th:src="@{/images/shop/img/1.png}" width="1050px" /></a>
+							<a></a>
+						</div>
+						<div class="carousel-img">
+							<a href="/shop/product/66"><img th:src="@{/images/shop/img/2.png}" width="1050px" /></a>
+							<a></a>
+						</div>
+						<div class="carousel-img">
+							<a href="/shop/product/28"><img th:src="@{/images/shop/img/3.png}" width="1050px" /></a>
+							<a></a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+		<div id="tabs">
+			<div id="hotitem">熱門商品</div>
+			<ul id="tabs-ul">
+				<li class="tab active">
+					<a href="#PC">PC</a>
+				</li>
+				<li class="tab">
+					<a href="#TV">TV</a>
+				</li>
+				<li class="tab">
+					<a href="#physical">遊戲週邊</a>
+				</li>
+			</ul>
+			<div>
+				<div id="PC">
+					<div class="tab-products-container">
+						<div id="tab-products" th:each="p:${PCpro}">
+							<div id="product">
+								<div class="img_a">
+									<a class="img_a" th:href="@{'/shop/product/'+${p.p_id}}">
+										<img id="pimg" th:src="@{${p.photosImagePath}}" width="180px">
+									</a>
+								</div>
+								<div id="pname">
+									<a th:text="${p.p_name}" class="pname_a" th:href="@{'/shop/product/'+${p.p_id}}"></a>
+								</div>
+							</div>
+						</div>
+					<div class="list-link">
+						<a th:href="@{/shop/list?category=PC}">>> 看更多PC遊戲</a>
+					</div>
+					</div>
+				</div>
+				<div id="TV">
+					<div class="tab-products-container">
+						<div id="tab-products" th:each="p:${TVpro}">
+							<div id="product">
+								<div class="img_a">
+									<a th:href="@{'/shop/product/'+${p.p_id}}">
+										<img id="pimg" th:src="@{${p.photosImagePath}}" width="180px">
+									</a>
+								</div>
+								<div id="pname">
+									<a th:text="${p.p_name}" class="pname_a" th:href="@{'/shop/product/'+${p.p_id}}"></a>
+								</div>
+							</div>
+						</div>
+					<div class="list-link">
+						<a th:href="@{/shop/list?category=TV}">>> 看更多TV遊戲</a>
+					</div>
+					</div>
+				</div>
+				<div id="physical">
+					<div class="tab-products-container">
+						<div id="tab-products" th:each="p:${Physicalpro}">
+							<div id="product">
+								<div class="img_a">
+									<a th:href="@{'/shop/product/'+${p.p_id}}">
+										<img id="pimg" th:src="@{${p.photosImagePath}}" width="180px">
+									</a>
+								</div>
+								<div id="pname">
+									<a th:text="${p.p_name}" class="pname_a" th:href="@{'/shop/product/'+${p.p_id}}"></a>
+								</div>
+							</div>
+						</div>
+					<div class="list-link">
+						<a th:href="@{/shop/list?category=physical}">>> 看更多遊戲周邊</a>
+					</div>
+					</div>
+				</div>
+			</div>
+			<script type="text/javascript">
+                $('.carousel').slick({
+                    slidesToShow: 1,  //可以控制每個輪播有幾張圖片
+                    dots: true,
+                    centerMode: true,
+                    speed: 300,
+                    autoplay:true,
+                    autoplaySpeed:3000,
+                    arrows:false
+                });
+                $('#tabs').tabs(
+    			);
+    			
+            </script>
+		</div>
+		<div class="icon-bar">
+			<div>
+				<div class="a">
+					<a th:href="@{/shop/list}">所有商品</a>
+				</div>
+			</div>
+			<div>
+				<div class="a">
+					<a th:href="@{/shop/list/sale}">特惠商品</a>
+				</div>
+			</div>
+			<div>
+				<p>依商品分類瀏覽</p>
+				<div class="a">
+					<a th:href="@{/shop/list?category=PC}">PC</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list?category=TV}">TV</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list?category=遊戲週邊}">遊戲週邊</a>
+				</div>
+			</div>
+			<div>
+				<p>依作業系統瀏覽</p>
+				<div class="a">
+					<a th:href="@{/shop/list/os?os=windows}">Windows</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list/os?os=mac}">macOS</a>
+				</div>
+			</div>
+			<div>
+				<p>依熱門標籤瀏覽</p>
+				<div class="a">
+					<a th:href="@{/shop/list/tag?tag=動作}">動作</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list/tag?tag=冒險}">冒險</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list/tag?tag=單機}">單機</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list/tag?tag=策略}">策略</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list/tag?tag=運動}">運動</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list/tag?tag=角色扮演}">角色扮演</a>
+				</div>
+				<div class="a">
+					<a th:href="@{/shop/list/tag?tag=日本動畫}">日本動畫</a>
+				</div>
+			</div>
+		</div>
+
+		<div th:replace="footer :: #footer-wrapper"></div>
+	</div>
+</body>

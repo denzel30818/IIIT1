@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+/* header & footer 基礎設定值 */
+html, body {
+	height: 100%;
+}
+#logo{
+	margin-top:4px;
+	margin-right: 12px;
+	
+}
+
+#wrapper {
+	min-height: 100%;
+	position: relative;
+	padding-top: 100px;
+	padding-bottom: 65px;
+}
+
+/* 第一個導覽列高度、背景 */
+#top-menu1, #top-menu1-unlogin {
+	height: 70px;
+	background-color: rgba(0, 39, 66,0.95);
+	box-shadow: 0 0px 10px rgba(0, 39, 66,0.95); 
+/*  	border-bottom: 3px solid rgba(227, 185, 175,0.8); */
+}
+
+/* 整個導覽列位置‵、高度 */
+#top-bar, #top-bar-unlogin {
+	height: 70px;
+	z-index: 100;
+	position: fixed;
+	top: 0;
+}
+/* 導覽列超連結顏色 */
+#top-bar a, #top-bar-unlogin a {
+	color: #fff;
+}
+
+/* 購物車上的數量 */
+#cartnum{
+	width:14px;
+	height:14px;
+	background-color: #edd3d8;
+	border-radius: 7px;
+	font-size:1px;
+	text-align: center;
+	line-height:14px;
+	position: absolute;
+	top:-2px;
+	right:-7px;
+	color:black;
+	
+}
+#cart{
+	position:relative;
+	width:24; 
+	height:24;
+}

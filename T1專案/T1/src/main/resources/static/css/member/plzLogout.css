@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+/* 對話框大小、邊線 */
+#logoutMsg-wrapper {
+	height: 270px;
+	width: 300px;
+	border: 1px solid black;
+	border-radius: 10px 10px 0 0;
+	margin: auto;
+}
+
+/* 對話框 Banner 大小、邊線、顏色 */
+#logoutMsg-banner {
+	height: 30px;
+	width: 300px;
+	border-radius: 10px 10px 0 0;
+	background-color: red;
+}
+
+/* 對話框訊息水平垂直置中 */
+#logoutMsg{
+	line-height: 200px;
+	text-align: center;
+}
+
+/* 回首頁按鈕寬度 */
+#logoutMsg-wrapper button {
+	width: 100%;
+}

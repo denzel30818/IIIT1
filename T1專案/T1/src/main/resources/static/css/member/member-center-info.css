@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+/* 會員照片大小 */
+#member-center-content-photo {
+	height: 180px;
+	width: 180px;
+}
+
+#upload_img, #check-upload_img, #cancel-upload_img {
+	display: none;
+}

@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+/* 激活訊息位置、邊線、陰影 */
+#activeMsg {
+	margin: 25vh auto;
+	border: 1px solid lightgray;
+	box-shadow: 5px 5px 10px gray;
+	border-radius: 10px;
+	height: 165px;
+	width:320px;
+}
